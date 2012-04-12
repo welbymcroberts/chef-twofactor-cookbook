@@ -31,6 +31,8 @@ template "/etc/yubikeys" do
   )
 end
 
-template "/etc/pam.d/sshd" do
-   source "sshd.erb"
+template "/etc/pam.d/password-auth" do
+   source "password-auth.erb"
+   variables(
+       :yubikey_url => "https://api.yubico.com/wsapi/2.0/verify?id=%d&otp=%s"
 end
